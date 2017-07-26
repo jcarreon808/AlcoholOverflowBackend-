@@ -15,23 +15,14 @@ ActiveRecord::Schema.define(version: 20170726172737) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "beers", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.integer "abv"
-    t.integer "ibu"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "reviews", force: :cascade do |t|
     t.string "content"
     t.bigint "user_id"
-    t.bigint "beer_id"
+    t.bigint "wine_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["beer_id"], name: "index_reviews_on_beer_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
+    t.index ["wine_id"], name: "index_reviews_on_wine_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -42,6 +33,21 @@ ActiveRecord::Schema.define(version: 20170726172737) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "reviews", "beers"
+  create_table "wines", force: :cascade do |t|
+    t.string "name"
+    t.string "region"
+    t.string "winery"
+    t.string "varietal"
+    t.string "wine_type"
+    t.string "link"
+    t.string "image"
+    t.integer "rank"
+    t.integer "vintage"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "reviews", "users"
+  add_foreign_key "reviews", "wines"
 end
