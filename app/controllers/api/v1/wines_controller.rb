@@ -6,7 +6,6 @@ class Api::V1::WinesController < ApplicationController
   end
 
   def create
-
     params['wines'].each do |wine|
       @wine = Wine.create(name:wine['name'], region:wine['region'], winery:wine['winery'], varietal:wine['varietal'], wine_type:wine['type'],
       link:wine['link'], image:wine['image'], vintage:wine['vintage'], price:wine['price'], rank:wine['snoothrank'])
