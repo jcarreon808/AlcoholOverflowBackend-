@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20170726172737) do
 
   create_table "reviews", force: :cascade do |t|
     t.string "content"
+    t.integer "user_rating"
     t.bigint "user_id"
     t.bigint "wine_id"
     t.datetime "created_at", null: false
@@ -44,6 +45,7 @@ ActiveRecord::Schema.define(version: 20170726172737) do
     t.integer "rank"
     t.integer "vintage"
     t.integer "price"
+    t.integer "user_vote", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

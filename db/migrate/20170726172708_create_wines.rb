@@ -11,6 +11,7 @@ class CreateWines < ActiveRecord::Migration[5.1]
       t.integer :rank
       t.integer :vintage
       t.integer :price
+      t.integer :user_vote, default: 0
 
       t.timestamps
     end

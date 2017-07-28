@@ -7,7 +7,7 @@ class Api::V1::ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.create(user_id:params[:user_id], wine_id:params[:wine_id],content:params[:content])
+    @review = Review.create(review_params)
     render json: @review, status: 201
   end
 
@@ -20,6 +20,10 @@ class Api::V1::ReviewsController < ApplicationController
   end
 
   private
+
+  def review_params
+    params.permit(:user_id, :wine_id, :content, :user_rating)
+  end
 
   def findReview
     @review = Review.find(params[:id])
