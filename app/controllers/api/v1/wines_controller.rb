@@ -17,4 +17,16 @@ class Api::V1::WinesController < ApplicationController
     @wine = Wine.find(params[:id])
     render json: @wine, status: 201
   end
+
+  def update
+    @wine = Wine.find(params[:id])
+    @wine.update(wine_params)
+    render json: @wine, status: 201
+  end
+
+  private
+  def wine_params
+    params.permit(:name, :region, :winery, :varietal, :wine_type, :link, :image, :vintage, :price, :rank, :user_vote)
+  end
+
 end
